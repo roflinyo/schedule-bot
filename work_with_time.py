@@ -64,13 +64,15 @@ class TimeCount:
         
         for i in self.lst_of_deadline:
             try:
-                for ii, jj in i.items():
-                    if now.hour == ii.hour and now.minute == ii.minute:
-                        self.send_to_all('пора бы подготовиться к {0}'.format(jj[6:]))
-                        
+            for i in range(len(self.lst_of_deadline)):
+                try:
+                    for ii, jj in self.lst_of_deadline[i].items():
+                        if now.hour == ii.hour and now.minute == ii.minute:
+                            self.send_to_all('пора бы подготовиться к {0}'.format(jj[6:]))
+                            self.lst_of_deadline[i] = {1:jj[6:]}
             except:
                 pass
-
+            
     def send_to_all(self, per):      #187465541 - Рафа
         data = Filehelper.file_get('./id_list.txt')        
         for i in data:
